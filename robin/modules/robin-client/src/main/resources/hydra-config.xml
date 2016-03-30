@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://code.alibabatech.com/schema/dubbo
+	http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!--<dubbo:application name="robin"/>-->
+
+    <dubbo:registry protocol="zookeeper" address="127.0.0.1:2181"/>
+
+    <bean id="configuration" class="com.dtdream.vanyar.robin.agent.support.Configuration">
+        <property name="delayTime" value="3000"></property>
+        <property name="flushSize" value="10"></property>
+        <property name="queueSize" value="1024"></property>
+    </bean>
+    <!--leadService-->
+    <dubbo:reference id="leaderService" interface="com.dtdream.vanyar.robin.dubbomonitor.LeaderService" check="false"
+                     filter="-robin" timeout="2000">
+    </dubbo:reference>
+    <!--hydraService-->
+    <dubbo:reference id="hydraService" interface="com.dtdream.vanyar.robin.dubbomonitor.HydraService" check="false"
+                     filter="-robin" timeout="2000">
+    </dubbo:reference>
+
+    <bean id="traceService" class="com.dtdream.vanyar.robin.agent.support.TraceService">
+        <property name="hydraService" ref="hydraService"></property>
+        <property name="leaderService" ref="leaderService"></property>
+    </bean>
+    <bean id="transfer" class="com.dtdream.vanyar.robin.agent.support.DefaultSyncTransfer">
+        <property name="traceService" ref="traceService"/>
+        <constructor-arg ref="configuration"/>
+    </bean>
+    <!--被HydraFilter使用-->
+    <bean id="tracer" class="com.dtdream.vanyar.robin.agent.Tracer" factory-method="getTracer">
+        <property name="traceService" ref="traceService"/>
+        <property name="transfer" ref="transfer"/>
+    </bean>
+
+
+</beans>
