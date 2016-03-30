@@ -47,19 +47,8 @@
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>com.alibaba</groupId>-->
-            <!--<artifactId>dubbo</artifactId>-->
-            <!--<exclusions>-->
-                <!--<exclusion>-->
-                    <!--<artifactId>org.javassist</artifactId>-->
-                    <!--<groupId>javassist</groupId>-->
-                <!--</exclusion>-->
-            <!--</exclusions>-->
-        <!--</dependency>-->
-
         <dependency>
-            <groupId>xyz.cloorc</groupId>
+            <groupId>com.alibaba</groupId>
             <artifactId>dubbo</artifactId>
             <exclusions>
                 <exclusion>
@@ -68,6 +57,17 @@
                 </exclusion>
             </exclusions>
         </dependency>
+
+        <!--dependency>
+            <groupId>xyz.cloorc</groupId>
+            <artifactId>dubbo</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>org.javassist</artifactId>
+                    <groupId>javassist</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency -->
 
         <dependency>
             <groupId>org.javassist</groupId>

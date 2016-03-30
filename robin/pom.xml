@@ -101,7 +101,7 @@
         <fastjson.version>1.1.28</fastjson.version>
         <jsp-api.version>2.1</jsp-api.version>
         <jstl-api.version>1.2</jstl-api.version>
-        <dubbo.version>2.5.3-RC1</dubbo.version>
+        <dubbo.version>2.4.8</dubbo.version>
         <validation-api.version>1.0.0.GA</validation-api.version>
         <metamorphosis.version>1.4.3</metamorphosis.version>
         <disruptor.version>2.10.3</disruptor.version>
@@ -297,19 +297,19 @@
                 <version>${fastjson.version}</version>
             </dependency>
             <!-- dubbo -->
-            <!--<dependency>-->
-                <!--<groupId>com.alibaba</groupId>-->
-                <!--<artifactId>dubbo</artifactId>-->
-                <!--<version>${dubbo.version}</version>-->
-                <!--<exclusions>-->
-                    <!--<exclusion>-->
-                        <!--<groupId>org.springframework</groupId>-->
-                        <!--<artifactId>spring</artifactId>-->
-                    <!--</exclusion>-->
-                <!--</exclusions>-->
-            <!--</dependency>-->
-
             <dependency>
+                <groupId>com.alibaba</groupId>
+                <artifactId>dubbo</artifactId>
+                <version>${dubbo.version}</version>
+                <exclusions>
+                    <exclusion>
+                      <groupId>org.springframework</groupId>
+                        <artifactId>spring</artifactId>
+                    </exclusion>
+                </exclusions>
+            </dependency>
+
+            <!--dependency>
                 <groupId>xyz.cloorc</groupId>
                 <artifactId>dubbo</artifactId>
                 <version>${dubbo.version}</version>
@@ -319,7 +319,7 @@
                         <artifactId>spring</artifactId>
                     </exclusion>
                 </exclusions>
-            </dependency>
+            </dependency -->
             <!-- log -->
             <dependency>
                 <groupId>log4j</groupId>
